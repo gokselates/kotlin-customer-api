@@ -1,10 +1,12 @@
 package com.nk.kotlincustomerapi.controller
 
 import com.nk.kotlincustomerapi.domain.Customer
+import com.nk.kotlincustomerapi.domain.dto.CustomerDto
 import com.nk.kotlincustomerapi.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -20,5 +22,11 @@ class CustomerController(
 
         val customerList = customerService.getAllCustomers()
         return ResponseEntity<List<Customer>>(customerList, HttpStatus.OK)
+    }
+
+    @PostMapping("/save")
+    fun createCustomer(customerDto: CustomerDto): ResponseEntity<Customer> {
+
+        return ResponseEntity<Customer>(customerService.createCustomer(customerDto), HttpStatus.OK)
     }
 }

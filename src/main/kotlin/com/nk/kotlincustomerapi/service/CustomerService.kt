@@ -37,12 +37,13 @@ class CustomerService (
 
         if (customer.isEmpty){
 
-            return ResponseEntity(CustomerResponseDto(null,"","",null,"Bulunamadı"), HttpStatus.NOT_FOUND)
+            return ResponseEntity(CustomerResponseDto.Builder()
+                .message("Bulunamadı").build(),
+                HttpStatus.NOT_FOUND)
         }
 
         val createdCustomer = customerConverter.convertCustomerResponseDto(customer)
-
-        return ResponseEntity(createdCustomer, HttpStatus.OK)
+        return ResponseEntity(createdCustomer, HttpStatus.OK).also { createdCustomer.message = HttpStatus.OK.toString() }
     }
 
 }

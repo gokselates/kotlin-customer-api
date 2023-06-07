@@ -23,13 +23,12 @@ class CustomerConverter {
 
     fun convertCustomerResponseDto(customerResponseOptinal: Optional<Customer>) : CustomerResponseDto {
 
-        return CustomerResponseDto(
-            customerResponseOptinal.get().Id,
-            customerResponseOptinal.get().name,
-            customerResponseOptinal.get().surname,
-            customerResponseOptinal.get().email,
-            "Başarılı"
-        )
-
+        return CustomerResponseDto.Builder()
+            .id(customerResponseOptinal.get().Id)
+            .name(customerResponseOptinal.get().name)
+            .surname(customerResponseOptinal.get().surname)
+            .email(customerResponseOptinal.get().email)
+            .message("")
+            .build()
     }
 }

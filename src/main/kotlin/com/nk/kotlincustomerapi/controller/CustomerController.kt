@@ -1,7 +1,7 @@
 package com.nk.kotlincustomerapi.controller
 
 import com.nk.kotlincustomerapi.domain.Customer
-import com.nk.kotlincustomerapi.domain.dto.CustomerDto
+import com.nk.kotlincustomerapi.domain.dto.CustomerSaveRequestDto
 import com.nk.kotlincustomerapi.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -25,8 +25,8 @@ class CustomerController(
     }
 
     @PostMapping("/save")
-    fun createCustomer(customerDto: CustomerDto): ResponseEntity<Customer> {
+    fun createCustomer(@RequestBody customerSaveRequestDto: CustomerSaveRequestDto): ResponseEntity<Customer> {
 
-        return ResponseEntity<Customer>(customerService.createCustomer(customerDto), HttpStatus.OK)
+        return ResponseEntity<Customer>(customerService.createCustomer(customerSaveRequestDto), HttpStatus.OK)
     }
 }

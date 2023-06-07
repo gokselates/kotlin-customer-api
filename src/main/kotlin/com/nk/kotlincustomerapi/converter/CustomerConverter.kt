@@ -1,21 +1,20 @@
 package com.nk.kotlincustomerapi.converter
 
 import com.nk.kotlincustomerapi.domain.Customer
-import com.nk.kotlincustomerapi.domain.dto.CustomerDto
+import com.nk.kotlincustomerapi.domain.dto.CustomerSaveRequestDto
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class CustomerConverter {
 
 
-    fun convertCustomerDto(customerDto: CustomerDto) : Customer {
+    fun convertCustomerDto(customerSaveRequestDto: CustomerSaveRequestDto) : Customer {
 
         return Customer(
-            customerDto.id,
-            customerDto.name,
-            customerDto.surname,
-            customerDto.email
+            customerSaveRequestDto.id,
+            customerSaveRequestDto.name,
+            customerSaveRequestDto.surname,
+            customerSaveRequestDto.email
         )
 
     }

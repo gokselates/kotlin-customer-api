@@ -2,7 +2,7 @@ package com.nk.kotlincustomerapi.service
 
 import com.nk.kotlincustomerapi.converter.CustomerConverter
 import com.nk.kotlincustomerapi.domain.Customer
-import com.nk.kotlincustomerapi.domain.dto.CustomerDto
+import com.nk.kotlincustomerapi.domain.dto.CustomerSaveRequestDto
 import com.nk.kotlincustomerapi.repository.CustomerRepository
 import org.springframework.stereotype.Service
 
@@ -12,14 +12,14 @@ class CustomerService (
     private val customerConverter: CustomerConverter
 ){
 
-    fun getAllCustomers(): List<Customer>{
+    fun getAllCustomers(): List<Customer> = customerRepository.findAll().toList()
 
-        return customerRepository.findAll().toList()
-    }
+    fun createCustomer(customerSaveRequestDto: CustomerSaveRequestDto): Customer {
 
-    fun createCustomer(customerDto: CustomerDto): Customer {
-
-        val customer = customerConverter.convertCustomerDto(customerDto)
+        val customer = customerConverter.convertCustomerDto(customerSaveRequestDto)
         return customerRepository.save(customer)
     }
+
+
+
 }
